@@ -24,7 +24,7 @@
     components: { DestForm, DestMap },
     data () {
       return {
-        values: { from_val: 'elective', to_val: 'emergency' }
+        values: { from_val: '', to_val: '' }
       }
     }
   }

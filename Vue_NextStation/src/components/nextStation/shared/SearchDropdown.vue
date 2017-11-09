@@ -1,5 +1,5 @@
 <template lang='pug'>
-  select.ui.search.fluid.dropdown(v-model='seletedValue')
+  select.ui.search.fluid.dropdown
     option(value='') default
     option(value='elective') Elective case
     option(value='emergency') Elective case
@@ -12,15 +12,11 @@
     props: {
       value: [String, Number]
     },
-    data () {
-      return {
-        seletedValue: ''
-      }
-    },
     mounted () {
       $('select.dropdown').dropdown({
         fullTextSearch: true,
-        onChange: (value, text, choice) => {
+        onChange: (value) => {
+          console.log(value)
           this.$emit('input', value)
         }
       })
