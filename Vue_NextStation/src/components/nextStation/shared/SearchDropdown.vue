@@ -9,6 +9,9 @@
 <script>
   export default {
     name: 'SearchDropdown',
+    props: {
+      value: [String, Number]
+    },
     data () {
       return {
         seletedValue: ''
@@ -21,9 +24,6 @@
           this.$emit('input', value)
         }
       })
-    },
-    props: {
-      value: String
     }
   }
 </script>

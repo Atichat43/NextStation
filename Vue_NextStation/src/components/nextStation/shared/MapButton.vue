@@ -8,7 +8,7 @@ export default {
   name: 'MapButton',
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     selectedValue: {
