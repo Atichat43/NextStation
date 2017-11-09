@@ -19,8 +19,6 @@
               // RESULTs
               h1 RESULTS
               label boss
-      .row
-        label comment new row
 </template>
 
 <style scope>
