@@ -7,15 +7,6 @@
  
 </template>
 
-<style scoped>
-  .ui.star.rating {
-    padding-left: .75em;
-  }
-  .ui.cards>.card { 
-    width: 260px;
-  }
-</style>
-
 <script>
 import Card from './ads/AdCard'
 export default {

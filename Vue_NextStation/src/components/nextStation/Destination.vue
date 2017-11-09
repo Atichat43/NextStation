@@ -7,13 +7,7 @@
         .six.wide.right.floated.column
           .ui.container
             // Form
-            .ui.form
-              .field
-                label From
-                SearchDropdown
-              .field  
-                label To
-                SearchDropdown
+            DestForm(v-model='values')
             .ui.divider    
             .ui.container
               // RESULTs
@@ -29,12 +23,14 @@
 </style>
 
 <script>
-  import SearchDropdown from './shared/SearchDropdown.vue'
+  import DestForm from './destination/DestForm.vue'
   export default {
     name: 'Destination',
-    components: { SearchDropdown },
+    components: { DestForm },
     data () {
-      return {}
+      return {
+        values: { from_val: 'elective', to_val: 'emergency' }
+      }
     }
   }
 </script>
