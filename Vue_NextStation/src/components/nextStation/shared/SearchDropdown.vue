@@ -18,7 +18,6 @@
       $('select.dropdown').dropdown({
         fullTextSearch: true,
         onChange: (value, text, choice) => {
-          console.log('in')
           this.$emit('input', value)
         }
       })

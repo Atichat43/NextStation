@@ -3,7 +3,7 @@
       .row
         .ten.wide.column
           // Map with botton choose destination
-          .ui.fluid.empty.container
+          DestMap(v-model='values')
         .six.wide.right.floated.column
           .ui.container
             // Form
@@ -15,18 +15,13 @@
               label boss
 </template>
 
-<style scope>
-  .ui.fluid.empty.container {
-    background-color: black;
-    min-height: 400px;
-  }
-</style>
 
 <script>
   import DestForm from './destination/DestForm.vue'
+  import DestMap from './destination/DestMap.vue'
   export default {
     name: 'Destination',
-    components: { DestForm },
+    components: { DestForm, DestMap },
     data () {
       return {
         values: { from_val: 'elective', to_val: 'emergency' }
