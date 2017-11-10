@@ -15,9 +15,7 @@
       // Footer components
       .ui.inverted.vertical.footer.segment
           .ui.container
-            Footer    
-    
-
+            Footer
 </template>
 
 <script>

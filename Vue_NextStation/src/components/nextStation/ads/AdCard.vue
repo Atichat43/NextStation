@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card
+  .card(@click="cardClicked")
     .image
       img(src='http://energy106.ca/wp-content/uploads/2016/11/Facebook-Share-Image.jpg')
     .content
@@ -11,7 +11,6 @@
     .extra.content
       | Rating:
       .ui.star.rating(:data-rating='rating') aa
-
 </template>
 
 
@@ -37,6 +36,11 @@
         .rating({
           maxRating: 5
         })
+    },
+    methods: {
+      cardClicked: function () {
+        this.$emit('click')
+      }
     }
   }
 </script>

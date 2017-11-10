@@ -1,21 +1,21 @@
 <template lang='pug'>
   .ui.middle.aligned.stackable.grid.container
-      .row
-        .ten.wide.column
-          // Map with botton choose destination
-          DestMap(v-model="destination")
-        .six.wide.right.floated.column
+    .row
+      .ten.wide.column
+        // Map with botton choose destination
+        DestMap(v-model="destination")
+      .six.wide.right.floated.column
+        .ui.container
+          // Form
+          DestForm(v-model="destination")
+          .ui.form
+            .field
+              .ui.green.fluid.button(@click="resetDestination") RESET
+          .ui.divider    
           .ui.container
-            // Form
-            DestForm(v-model="destination")
-            .ui.form
-              .field
-                .ui.green.fluid.button(@click="resetDestination") RESET
-            .ui.divider    
-            .ui.container
-              // RESULTs
-              h1 RESULTS
-              label boss
+            // RESULTs
+            h1 RESULTS
+            label boss
 </template>
 
 

@@ -3,17 +3,23 @@
     // ad W300px H250px
     .ui.link.cards
       // card
-      Card(v-for="n in 4", :rating="n")
- 
+      AdCard(v-for="item in 4", :rating="item", @click='showModalAd(item)')
+    AdModal(ref="adModal")
 </template>
 
 <script>
-import Card from './ads/AdCard'
+import AdModal from './ads/AdModal'
+import AdCard from './ads/AdCard'
 export default {
   name: 'Ads',
-  components: { Card },
+  components: { AdCard, AdModal },
   data () {
     return {}
+  },
+  methods: {
+    showModalAd: function (item) {
+      this.$refs.adModal.show(() => {})
+    }
   }
 }
 </script>
