@@ -8,6 +8,7 @@
     .field  
       label To
       SearchDropdown(v-model='value.to_val')
+    .ui.hidden.divider
 </template>
 
 <script>

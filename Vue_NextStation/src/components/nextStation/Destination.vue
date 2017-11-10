@@ -8,6 +8,9 @@
           .ui.container
             // Form
             DestForm(v-model="destination")
+            .ui.form
+              .field
+                .ui.green.fluid.button(@click="resetDestination") RESET
             .ui.divider    
             .ui.container
               // RESULTs
@@ -25,6 +28,12 @@
     data () {
       return {
         destination: { from_val: '', to_val: '' }
+      }
+    },
+    methods: {
+      resetDestination () {
+        this.destination.from_val = ''
+        this.destination.to_val = ''
       }
     }
   }
