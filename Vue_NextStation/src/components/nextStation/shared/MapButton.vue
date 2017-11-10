@@ -1,5 +1,5 @@
 <template lang="pug">
-  .ui.circular.button(@click.prevent="onChanged")
+  .ui.circular.button(@click="onChanged")
     slot
 </template>
 

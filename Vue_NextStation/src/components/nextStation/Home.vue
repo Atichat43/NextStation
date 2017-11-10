@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
   .ui.container
     Navbar
     .ui.text.container

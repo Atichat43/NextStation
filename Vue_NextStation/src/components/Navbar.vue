@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
     .ui.large.secondary.inverted.pointing.menu
         a.toc.item
             i.sidebar.icon

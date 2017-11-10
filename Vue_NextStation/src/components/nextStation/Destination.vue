@@ -3,11 +3,11 @@
       .row
         .ten.wide.column
           // Map with botton choose destination
-          DestMap(v-model='values')
+          DestMap(v-model="destination")
         .six.wide.right.floated.column
           .ui.container
             // Form
-            DestForm(v-model='values')
+            DestForm(v-model="destination")
             .ui.divider    
             .ui.container
               // RESULTs
@@ -24,7 +24,7 @@
     components: { DestForm, DestMap },
     data () {
       return {
-        values: { from_val: '', to_val: '' }
+        destination: { from_val: '', to_val: '' }
       }
     }
   }
