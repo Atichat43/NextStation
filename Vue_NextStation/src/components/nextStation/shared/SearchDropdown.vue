@@ -10,14 +10,21 @@
   export default {
     name: 'SearchDropdown',
     props: {
-      value: [String, Number]
+      value: [String, Number],
+      keyword: String
     },
     mounted () {
       $('select.dropdown').dropdown({
         fullTextSearch: true,
-        onChange: (value) => {
+        onChange: (value, text, choice) => {
           console.log(value)
-          this.$emit('input', value)
+          console.log(text)
+          console.log(choice)
+          if (this.keyword === 'f_val') {
+            this.$emit('fVal', value)
+          } else {
+            this.$emit('tVal', value)
+          }
         }
       })
     }
