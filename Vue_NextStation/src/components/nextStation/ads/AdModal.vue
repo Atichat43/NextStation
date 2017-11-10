@@ -1,8 +1,8 @@
 <template lang="pug">
   .ui.longer.modal(ref="modal")
     .header TITLE
-    .scrolling.content 
-      p(v-for="n in 50") bbb
+    .content 
+      p(v-for="n in 20") bbb
 </template>
 
 <script>

@@ -3,14 +3,14 @@
     .image
       img(src='http://energy106.ca/wp-content/uploads/2016/11/Facebook-Share-Image.jpg')
     .content
-      .header Location
+      .header {{item.name}}
       .meta
-        a 5km 30min
-      .description
+        a {{ item.location }}
+      // .description
         | reviews
     .extra.content
       | Rating:
-      .ui.star.rating(:data-rating='rating') aa
+      .ui.star.rating(:data-rating='item.rating') aa
 </template>
 
 
@@ -19,7 +19,7 @@
     padding-left: .75em;
   }
   .ui.cards>.card { 
-    width: 260px;
+    width: 240px;
   }
 </style>
 
@@ -28,7 +28,7 @@
   export default {
     name: 'Card',
     props: {
-      rating: Number,
+      item: Object,
       default: 0
     },
     mounted () {
