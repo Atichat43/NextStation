@@ -6,9 +6,7 @@
           | NEXT STATION
         h2 
           | comment somethings si mr.krai
-        .ui.huge.primary.button
-          | Get Started 
-          i.right.arrow.icon
+    .ui.hidden.divider
 </template>
 
 <script>

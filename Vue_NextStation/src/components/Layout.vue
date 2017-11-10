@@ -4,8 +4,11 @@
       // Home (TOP)
       .ui.inverted.vertical.masthead.center.aligned.segment
         Home
+        .ui.huge.primary.button(v-scroll-to="'#destinationSegment'")
+          | Get Started 
+          i.right.arrow.icon
       // Destination (CENTER)  
-      .ui.vertical.stripe.segment
+      #destinationSegment.ui.vertical.stripe.segment
         Destination
       .ui.vertical.stripe.segemnt
         Ads
