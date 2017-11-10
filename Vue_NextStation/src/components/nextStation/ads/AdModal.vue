@@ -1,7 +1,8 @@
 <template lang="pug">
-  .ui.modal(ref="modal")
+  .ui.longer.modal(ref="modal")
     .header TITLE
-    .content BOSS
+    .scrolling.content 
+      p(v-for="n in 50") bbb
 </template>
 
 <script>
@@ -10,6 +11,10 @@ export default {
   methods: {
     show (callback) {
       $(this.$el)
+        .modal('setting', 'transition', 'scale')
+        .modal({
+          blurring: true
+        })
         .modal({
           onApprove: () => { callback && callback() }
         })
