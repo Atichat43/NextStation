@@ -4,7 +4,7 @@
       .ui.button(@click="panTo('bts')") BTS
       .ui.button(@click="panTo('mrt')") MRT
       .ui.button(@click="panTo('air')") AIRPORT LINK
-    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="{streetViewControl: false}")
+    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="option")
       google-cluster(:maxZoom="10")
         google-marker(
           v-for="(m, index) in markers"
@@ -29,6 +29,18 @@ export default {
       // MAP
       mapType: 'roadmap',
       center: {lat: 13.757041, lng: 100.533913},
+      option: {
+        streetViewControl: false,
+        scrollwheel: true,
+        clickableIcons: false,
+        disableDoubleClickZoom: false,
+        fullscreenControl: false,
+        maxZoom: 16,
+        minZoom: 11,
+        noClear: false,
+        panControl: false,
+        backgroundColor: 'black'
+      },
       // MARKER
       markers: [
         {position: {lat: 13.757041, lng: 100.533913}, text: 'เมืองบอสเอง', value: 'phayathai'},
