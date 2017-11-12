@@ -11,11 +11,9 @@
           :clickable="true"
           @click="testClicked"
           @mouseover="statusText = m.text"
-          @mouseout="statusText = null"
+          @mouseout="statusText = 'over marker'"
           :icon="icon")
-      div(slot='visible')
-          div.status.bar(style='bottom: 0; left: 0; background-color: #0000FF; color: white; position: absolute; z-index: 100')
-            | {{statusText}}
+    .ui.black.fluid.label.status {{ statusText }}
 </template>
 
 
@@ -33,6 +31,10 @@
   }
   .gm-style-mtc {
     display: none
+  }
+  .label.status {
+    margin-top: 3px;
+    text-align: center;
   }
 </style>
 
@@ -57,7 +59,7 @@ export default {
       },
       // hybrid
       mapType: 'roadmap',
-      statusText: '',
+      statusText: 'over marker',
       markers: [
         // 13.757041, 100.533913
         {position: {lat: 13.757041, lng: 100.533913}, text: 'เมืองบอสเอง'},
@@ -85,6 +87,9 @@ export default {
       if (number > 15) {
         console.log($('.gmnoprint')[3])
       }
+    },
+    overMarker: function (text) {
+      console.log(text)
     }
   }
 }
