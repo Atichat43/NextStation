@@ -2,8 +2,8 @@
   .div
     label From, to {{value}}
     .ui.button(@click="panToBTS") BTS
-    google-map.fluid.map(ref="googleMap", :center="center", :zoom="12", :map-type-id="mapType", :options="{streetViewControl: false}")
-      google-cluster
+    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="{streetViewControl: false}", @zoom_changed="testZoom")
+      google-cluster(:maxZoom="10")
         google-marker(
           v-for="(m, index) in markers"
           :key="index"
@@ -25,6 +25,15 @@
     margin: 0 auto;
     background: gray;
   }
+  .gm-style-cc, #map_canvas .gm-style > .gmnoprint > .gmnoprint > div > img {
+    display: none !important;
+  }
+  .gm-fullscreen-control {
+    display: none
+  }
+  .gm-style-mtc {
+    display: none
+  }
 </style>
 
 <script>
@@ -37,6 +46,9 @@ export default {
   },
   data () {
     return {
+      minZoom: 11,
+      maxZoom: 15,
+      zoom: 12,
       center: {lat: 13.757041, lng: 100.533913},
       icon: {
         url: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png',
@@ -59,27 +71,20 @@ export default {
       }
     }
   },
-  mounted () {
-    this.initMap()
-  },
   methods: {
-    initMap: function () {
-      // create Marker
-      /*
-      this.features.forEach(function(feature) {
-        var marker = new google.maps.Marker({
-          position: feature.position,
-          icon: icons[feature.type].icon,
-          map: map
-        });
-      });
-      */
-    },
     testClicked: function (e) {
-      console.log(e)
+      console.log($('.gmnoprint')[5].hidden = true)
+      console.log($('.button'))
     },
     panToBTS: function () {
-      this.$refs.googleMap.panTo({lat: 12.9, lng: 110.0})
+      let map = this.$refs.googleMap
+      map.panTo({lat: 13.757041, lng: 100.533913})
+      map.$mapObject.mapDataProviders = null
+    },
+    testZoom: function (number) {
+      if (number > 15) {
+        console.log($('.gmnoprint')[3])
+      }
     }
   }
 }
