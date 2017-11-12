@@ -25,6 +25,7 @@ export default {
     },
     setSelected: function (from, to) {
       $('.fromDestination').dropdown('set selected', from)
+      $('.toDestination').dropdown('set selected', to)
     }
   }
 }
