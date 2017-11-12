@@ -1,6 +1,6 @@
 <template lang="pug">
   .ui.container
-    label From, to {{value}}
+    label  {{value}}
       .ui.button(@click="panTo('bts')") BTS
       .ui.button(@click="panTo('mrt')") MRT
       .ui.button(@click="panTo('air')") AIRPORT LINK
@@ -50,7 +50,12 @@ export default {
   methods: {
     markerClicked: function (index) {
       let stationName = this.markers[index].value
-      this.$emit('input', { from_val: stationName, to_val: this.value.to_val })
+      if (this.value.from_val === '') {
+        this.$emit('input', { from_val: stationName, to_val: this.value.to_val })
+      } else {
+        this.$emit('input', { from_val: this.value.from_val, to_val: stationName })
+      }
+      this.$emit('selected')
     },
     panTo: function (e) {
       this.$refs.googleMap.panTo({lat: 13.757041, lng: 100.533913})

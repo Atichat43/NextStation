@@ -4,10 +4,10 @@
       label {{ value }}
     .field
       label From
-      SearchDropdown(v-model='value.from_val')
+      SearchDropdown.fromDestination(ref="thisForm", v-model='value.from_val')
     .field  
       label To
-      SearchDropdown(v-model='value.to_val')
+      SearchDropdown.toDestination(ref="dropdownTo",v-model='value.to_val')
     .ui.hidden.divider
 </template>
 
@@ -18,7 +18,15 @@ export default {
   props: {
     value: Object
   },
-  components: { SearchDropdown }
+  components: { SearchDropdown },
+  methods: {
+    clearForm: function () {
+      $('.selection.dropdown').dropdown('clear')
+    },
+    setSelected: function (from, to) {
+      $('.fromDestination').dropdown('set selected', from)
+    }
+  }
 }
 </script>
 

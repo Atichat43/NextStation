@@ -1,8 +1,8 @@
 <template lang='pug'>
   select.ui.search.fluid.selection.dropdown(v-model='seletedValue')
     option(value='') default
-    option(value='elective') Elective case
-    option(value='emergency') Elective case
+    option(value='phayathai') phayathai
+    option(value='a') Elective case
     option(value='0') Ergency case
 </template>
 
@@ -25,6 +25,11 @@
           this.$emit('input', value)
         }
       })
+    },
+    methods: {
+      setSeleted: function (value) {
+        $(this.$el).dropdown('set selected', value)
+      }
     }
   }
 </script>

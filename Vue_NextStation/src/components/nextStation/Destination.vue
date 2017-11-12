@@ -2,18 +2,15 @@
   .ui.middle.aligned.stackable.grid.container
     .row
       .ten.wide.column
-        // Map with botton choose destination
-        DestMap(v-model="destination")
+        DestMap(v-model="destination", @selected="updateDestination")
       .six.wide.right.floated.column
         .ui.container
-          // Form
-          DestForm(v-model="destination")
+          DestForm(ref="destForm", v-model="destination")
           .ui.form
             .field
               .ui.green.fluid.button(@click="resetDestination") RESET
           .ui.divider    
           .ui.container
-            // RESULTs
             h1 RESULTS
             label boss
 </template>
@@ -34,6 +31,10 @@
       resetDestination () {
         this.destination.from_val = ''
         this.destination.to_val = ''
+        this.$refs.destForm.clearForm()
+      },
+      updateDestination: function () {
+        this.$refs.destForm.setSelected(this.destination.from_val, this.destination.to_val)
       }
     }
   }
