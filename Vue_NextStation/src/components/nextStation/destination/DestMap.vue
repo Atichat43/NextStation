@@ -1,21 +1,63 @@
 <template lang="pug">
-  .div
+  .ui.container
     label From, to {{value}}
-    .ui.button(@click="panToBTS") BTS
-    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="{streetViewControl: false}", @zoom_changed="testZoom")
+      .ui.button(@click="panTo('bts')") BTS
+      .ui.button(@click="panTo('mrt')") MRT
+      .ui.button(@click="panTo('air')") AIRPORT LINK
+    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="{streetViewControl: false}")
       google-cluster(:maxZoom="10")
         google-marker(
           v-for="(m, index) in markers"
           :key="index"
           :position="m.position"
           :clickable="true"
-          @click="testClicked"
+          :icon="icon"
           @mouseover="statusText = m.text"
-          @mouseout="statusText = 'over marker'"
-          :icon="icon")
+          @mouseout="statusText = 'Hover button to show name'"
+          @click="markerClicked(index)")
     .ui.black.fluid.label.status {{ statusText }}
 </template>
 
+<script>
+export default {
+  name: 'DestMap',
+  props: {
+    value: Object
+  },
+  data () {
+    return {
+      // MAP
+      mapType: 'roadmap',
+      center: {lat: 13.757041, lng: 100.533913},
+      // MARKER
+      markers: [
+        {position: {lat: 13.757041, lng: 100.533913}, text: 'เมืองบอสเอง', value: 'phayathai'},
+        {position: {lat: 13.751051, lng: 100.533913}, text: 'a', value: 'a'},
+        {position: {lat: 13.752061, lng: 100.533913}, text: 'b', value: 'b'},
+        {position: {lat: 13.753071, lng: 100.533913}, text: 'c', value: 'c'},
+        {position: {lat: 12.9, lng: 110.0}, text: 'อีกเมืองนึงของบอส', value: 'ไหนไม่รุ'}
+      ],
+      icon: {
+        // http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png
+        url: 'http://maps.google.com/mapfiles/kml/shapes/road_shield3.png',
+        size: {width: 46, height: 46, f: 'px', b: 'px'},
+        scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
+      },
+      // STATUS BAR
+      statusText: 'Hover button to show name'
+    }
+  },
+  methods: {
+    markerClicked: function (index) {
+      let stationName = this.markers[index].value
+      this.$emit('input', { from_val: stationName, to_val: this.value.to_val })
+    },
+    panTo: function (e) {
+      this.$refs.googleMap.panTo({lat: 13.757041, lng: 100.533913})
+    }
+  }
+}
+</script>
 
 <style scope>
   .map {
@@ -37,60 +79,3 @@
     text-align: center;
   }
 </style>
-
-<script>
-import MapButton from '../shared/MapButton'
-export default {
-  name: 'DestMap',
-  components: { MapButton },
-  props: {
-    value: Object
-  },
-  data () {
-    return {
-      minZoom: 11,
-      maxZoom: 15,
-      zoom: 12,
-      center: {lat: 13.757041, lng: 100.533913},
-      icon: {
-        url: 'https://maps.google.com/mapfiles/kml/shapes/parking_lot_maps.png',
-        size: {width: 46, height: 46, f: 'px', b: 'px'},
-        scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
-      },
-      // hybrid
-      mapType: 'roadmap',
-      statusText: 'over marker',
-      markers: [
-        // 13.757041, 100.533913
-        {position: {lat: 13.757041, lng: 100.533913}, text: 'เมืองบอสเอง'},
-        {position: {lat: 12.9, lng: 110.0}, text: 'อีกเมืองนึงของบอส'}
-      ],
-      iconBase: 'https://maps.google.com/mapfiles/kml/shapes/',
-      icons: {
-        parking: {icon: this.iconBase + 'parking_lot_maps.png'},
-        library: {icon: this.iconBase + 'library_maps.png'},
-        info: {icon: this.iconBase + 'info-i_maps.png'}
-      }
-    }
-  },
-  methods: {
-    testClicked: function (e) {
-      console.log($('.gmnoprint')[5].hidden = true)
-      console.log($('.button'))
-    },
-    panToBTS: function () {
-      let map = this.$refs.googleMap
-      map.panTo({lat: 13.757041, lng: 100.533913})
-      map.$mapObject.mapDataProviders = null
-    },
-    testZoom: function (number) {
-      if (number > 15) {
-        console.log($('.gmnoprint')[3])
-      }
-    },
-    overMarker: function (text) {
-      console.log(text)
-    }
-  }
-}
-</script>

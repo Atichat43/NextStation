@@ -27,7 +27,7 @@
     components: { DestForm, DestMap },
     data () {
       return {
-        destination: { from_val: '', to_val: '' }
+        destination: { from_val: '', to_val: 'eiei' }
       }
     },
     methods: {
