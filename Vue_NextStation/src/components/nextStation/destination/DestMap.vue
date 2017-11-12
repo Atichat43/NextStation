@@ -4,7 +4,8 @@
       .ui.button(@click="panTo('bts')") BTS
       .ui.button(@click="panTo('mrt')") MRT
       .ui.button(@click="panTo('air')") AIRPORT LINK
-    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="option")
+      .ui.button(@click="fitBounds") Fit Bound
+    google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="option", @bounds_changed="checkBounds", @click="addPointToPath")
       google-cluster(:maxZoom="10")
         google-marker(
           v-for="(m, index) in markers"
@@ -15,7 +16,9 @@
           @mouseover="statusText = m.text"
           @mouseout="statusText = 'Hover button to show name'"
           @click="markerClicked(index)")
+      gmap-polyline(:path="mapPaths")
     .ui.black.fluid.label.status {{ statusText }}
+    label {{ mapPaths }}
 </template>
 
 <script>
@@ -23,6 +26,11 @@ export default {
   name: 'DestMap',
   props: {
     value: Object
+  },
+  mounted () {
+    this.$refs.googleMap.$mapCreated.then(() => {
+      console.log('MAP CREATED')
+    })
   },
   data () {
     return {
@@ -56,7 +64,9 @@ export default {
         scaledSize: {width: 23, height: 23, f: 'px', b: 'px'}
       },
       // STATUS BAR
-      statusText: 'Hover button to show name'
+      statusText: 'Hover button to show name',
+      // Path
+      mapPaths: []
     }
   },
   methods: {
@@ -71,6 +81,17 @@ export default {
     },
     panTo: function (e) {
       this.$refs.googleMap.panTo({lat: 13.757041, lng: 100.533913})
+    },
+    checkBounds: function (e) {
+    },
+    fitBounds: function (e) {
+      // this.$refs.googleMap.fitBounds({sc: {b: 100.37186466015623, f: 100.61013065136717}}, {wc: {b: 13.688668900641094, f: 13.82205934415864}})
+      // console.log(this.$refs.googleMap.LatLngBounds())
+    },
+    addPointToPath: function (event) {
+      console.log('click')
+      console.log(event)
+      this.mapPaths.push({lat: event.latLng.lat(), lng: event.latLng.lng()})
     }
   }
 }
