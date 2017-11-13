@@ -1,6 +1,7 @@
 <template lang="pug">
   .ui.container
     label  {{value}}
+    label by fant
       .ui.button(@click="panTo('bts')") BTS
       .ui.button(@click="panTo('mrt')") MRT
       .ui.button(@click="panTo('air')") AIRPORT LINK
