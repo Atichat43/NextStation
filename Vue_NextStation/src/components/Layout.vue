@@ -2,7 +2,7 @@
   .pushable
     .pusher
       // Home (TOP)
-      .ui.inverted.vertical.masthead.center.aligned.segment
+      .ui.inverted.vertical.masthead.center.aligned.segment.fantCustom
         Home
         .ui.huge.primary.button(v-scroll-to="'#destinationSegment'")
           | Get Started 
@@ -39,6 +39,9 @@ export default {
 
 
 <style>
+  .fantCustom {
+    margin-left: 1em !important;
+  }
   .hidden.menu {
     display: none;
   }

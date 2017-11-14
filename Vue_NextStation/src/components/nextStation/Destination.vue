@@ -1,6 +1,8 @@
 <template lang='pug'>
   .ui.middle.aligned.stackable.grid.container
     .row
+      .ui.container.fant
+    //
       .ten.wide.column
         DestMap(v-model="destination", @selected="updateDestination")
       .six.wide.right.floated.column
@@ -9,11 +11,19 @@
           .ui.form
             .field
               .ui.green.fluid.button(@click="resetDestination") RESET
-          .ui.divider    
+          .ui.divider
           .ui.container
             h1 RESULTS
             label boss
 </template>
+
+<style scope>
+  .fant {
+    background-color: orange;
+    height: 700px;
+    width: 100%;
+  }
+</style>
 
 
 <script>
