@@ -1,35 +1,10 @@
 <template lang="pug">
   .ui.container
     label  {{value}}
-    label by fant
       .ui.button(@click="panTo('bts')") BTS
       .ui.button(@click="panTo('mrt')") MRT
       .ui.button(@click="panTo('air')") AIRPORT LINK
       .ui.button(@click="fitBounds") Fit Bound
-    .ui.container.fant
-      .ui.grid
-        .row
-          .ui.circular.icon.button(style="margin-left: 30px")
-            i.icon.search
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-        .row
-        .row
-        .row
-          .ui.button(style="margin-left: 650px")
-        .row
-        .row
-        .row
-          .ui.button(style="margin-left: 30px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-          .ui.button(style="margin-left: 60px")
-        
     google-map.fluid.map(ref="googleMap", :center="center", :zoom="13", :map-type-id="mapType", :options="option", @bounds_changed="checkBounds", @click="addPointToPath")
       google-cluster(:maxZoom="10")
         google-marker(
@@ -43,7 +18,6 @@
           @click="markerClicked(index)")
       gmap-polyline(:path="mapPaths")
     .ui.black.fluid.label.status {{ statusText }}
-    label(v-for="path in mapPaths") {{ path }}
 </template>
 
 <script>
@@ -162,11 +136,6 @@ export default {
 </script>
 
 <style scope>
-  .fant {
-    width:100%;
-    height: 100%;
-    background-color: black;
-  }
   .map {
     height: 400px;
     margin: 0 auto;
@@ -184,8 +153,5 @@ export default {
   .label.status {
     margin-top: 3px;
     text-align: center;
-  }
-  .empty {
-    height: 400px;
   }
 </style>

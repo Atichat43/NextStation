@@ -1,8 +1,6 @@
 <template lang='pug'>
   .ui.middle.aligned.stackable.grid.container
     .row
-      .ui.container.fant
-    //
       .ten.wide.column
         DestMap(v-model="destination", @selected="updateDestination")
       .six.wide.right.floated.column
